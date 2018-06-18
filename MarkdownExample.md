@@ -1,13 +1,15 @@
 # Working with languages
 
+## Math Notation
 ```math
 sin(x)^3/cos(y^3)
 ```
 
-# Title 1
-## Title 2
+## Code Inline
 
 `ls - ltr | grep "BIBEye" | awk '{print $9}`
+
+## Using language syntaxing
 
 ```language
 export MYVar=toto; #this will export my var
@@ -25,3 +27,9 @@ export MYVar=toto; #this will export my var
 | CTRL+ALT+BREAK | Toggles the Terminal Services client display from window to full screen | NONE |
 | ALT+INSERT | Cycles through running programs on the remote computer | ALT+TAB |
 | ALT+HOME | Displays the remote computer's Start menu |  |
+
+# Working with PlantUML
+```puml {align="center"}
+Broker_Bridge<-BROKER_IIB10: channel
+```
+
