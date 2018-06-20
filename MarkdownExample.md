@@ -21,6 +21,7 @@ export MYVar=toto; #this will export my var
 
 # Working with tables
 `http://www.tablesgenerator.com/markdown_tables`
+
 | Key combination | Function                                                                | Similar local keys |
 | --------------- | ----------------------------------------------------------------------- | ------------------ |
 | CTRL+ALT+END    | Opens the Windows Security dialog box                                   | CTRL+ALT+DELETE    |
