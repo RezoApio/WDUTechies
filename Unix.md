@@ -19,6 +19,13 @@ ps -ef|grep 1675400
 export EXINIT="set ll=20000000"
 export EXINIT="set ll=20000000 dir=/tmp"
 ```
+# User & Group Manipulation
+
+```bash
+groupadd mynewgroup #Create a new group
+usermod -a -G examplegroup exampleusername # add exampleusername to the group examplegroup
+```
+
 # Next item
 
 
