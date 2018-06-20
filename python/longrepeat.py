@@ -6,7 +6,6 @@ def long_repeat(line):
     # your code here
     sol = 0 
     for i in range(len(line)):
-        regex=line[i]+"+"
         sol=max(sol,len(max(re.findall(line[i]+"+",line),key=len)))
         
     return sol
