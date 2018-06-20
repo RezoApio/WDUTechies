@@ -21,12 +21,12 @@ export MYVar=toto; #this will export my var
 
 # Working with tables
 `http://www.tablesgenerator.com/markdown_tables`
-| Key combination | Function | Similar local keys |
-|-----------------|-------------------------------------------------------------------------|--------------------|
-| CTRL+ALT+END | Opens the Windows Security dialog box | CTRL+ALT+DELETE |
-| CTRL+ALT+BREAK | Toggles the Terminal Services client display from window to full screen | NONE |
-| ALT+INSERT | Cycles through running programs on the remote computer | ALT+TAB |
-| ALT+HOME | Displays the remote computer's Start menu |  |
+| Key combination | Function                                                                | Similar local keys |
+| --------------- | ----------------------------------------------------------------------- | ------------------ |
+| CTRL+ALT+END    | Opens the Windows Security dialog box                                   | CTRL+ALT+DELETE    |
+| CTRL+ALT+BREAK  | Toggles the Terminal Services client display from window to full screen | NONE               |
+| ALT+INSERT      | Cycles through running programs on the remote computer                  | ALT+TAB            |
+| ALT+HOME        | Displays the remote computer's Start menu                               |                    |
 
 # Working with PlantUML
 ```puml {align="center"}
