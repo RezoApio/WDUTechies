@@ -14,10 +14,7 @@ def to_encrypt(text, delta):
             elif val > ascii_lowerz:
                 val -= 26
             res = res + chr(val)
-
-    print(res)
-
-    print(ord(text[0]))
+            
     return res
 
 if __name__ == '__main__':
