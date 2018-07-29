@@ -28,14 +28,26 @@ sudo do-release-upgrade -d
 ```shell
 mkdir ~/Containers
 mkdir ~/Repositories
-mkdir ~/
+mkdir ~/Downloads/Installer
+mkdir ~/Documents/Hubic
 
+```
+###Adding git & Techies Repo
+```shell
+sudo apt install git
+cd ~/Repositories
+git clone https://github.com/RezoApio/WDUTechies.git
 ```
 
 ###Adding Hubic support to synch folders
 ```shell
-sudo apt-get install gdebi # Adding deb package Manager
+sudo apt install gdebi-core # Adding deb package Manager
+cd ~/Downloads/Installer
 wget http://mir7.ovh.net/ovh-applications/hubic/hubiC-Linux/2.1.0/hubiC-Linux-2.1.0.53-linux.deb
+sudo gdebi hubiC-Linux-2.1.0.53-linux.deb
+hubic login william.dupre@gmail.com /home/william/Documents/Hubic
+hubic synchronize
+
 
 ```
 
