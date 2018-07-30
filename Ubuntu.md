@@ -48,13 +48,15 @@ sudo gdebi hubiC-Linux-2.1.0.53-linux.deb
 hubic login william.dupre@gmail.com /home/william/Documents/Hubic
 hubic synchronize
 
-
 ```
 
-## New Item
+### Installin Visual Studio Code
 
 ```shell
-
-
+firefox https://code.visualstudio.com/download
+#Save .deb to ~/Downloads/Installer
+sudo gdebi code_1.25.1-1531323788_amd64.deb
+code --install-extension shd101wyy.markdown-preview-enhanced
+code --install-extension 
 ```
 
