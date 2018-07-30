@@ -50,13 +50,22 @@ hubic synchronize
 
 ```
 
-### Installin Visual Studio Code
+### Installing Visual Studio Code
 
 ```shell
 firefox https://code.visualstudio.com/download
 #Save .deb to ~/Downloads/Installer
 sudo gdebi code_1.25.1-1531323788_amd64.deb
+#Extension for Markdown Preview & Markdown Linting
 code --install-extension shd101wyy.markdown-preview-enhanced
-code --install-extension 
+code --install-extension davidanson.vscode-markdownlint
+code --install-extension ms-python.python
+#Installing python3 pip to install linter
+sudo apt install python3-pip
+/usr/bin/python3 -m pip install -U pylint
+
+#Make VSCode default editor
+sudo update-alternatives --set editor /usr/bin/code
+
 ```
 
