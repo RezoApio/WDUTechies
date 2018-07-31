@@ -39,6 +39,14 @@ cd ~/Repositories
 git clone https://github.com/RezoApio/WDUTechies.git
 ```
 
+### Git Password Caching
+```shell
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=86400'
+#This is One Day time out
+
+```
+
 ###Adding Hubic support to synch folders
 ```shell
 sudo apt install gdebi-core # Adding deb package Manager
@@ -69,3 +77,35 @@ sudo update-alternatives --set editor /usr/bin/code
 
 ```
 
+### Installing Pixma MG5650 
+
+```shell
+firefox "https://www.canon-europe.com/support/consumer_products/products/fax__multifunctionals/inkjet/pixma_mg_series/pixma_mg5650.aspx?type=drivers&language=EN&os=Linux%20(64-bit)"
+#Save Scangear and IJ Printer .deb to Installer
+#scangearmp2-3.00-1-deb.tar.gz & cnijfilter2-5.00-1-deb.tar.gz currently
+
+tar -xvf cnijfilter2-5.00-1-deb.tar.gz
+cd cnijfilter2-5.00-1-deb/
+sudo ./install.sh
+#Follow the instruction it should detect the printer (may need to search twice)
+
+sudo apt install libpango1.0-0
+#needed package for scangear
+tar -xvf scangearmp2-3.00-1-deb.tar.gz
+cd scangearmp2-3.00-1-deb/
+sudo ./install.sh
+
+##Adding Rolf Bensch PPA for xsane
+sudo add-apt-repository ppa:rolfbensch/sane-git
+sudo apt update
+sudo apt install xsane
+```
+
+
+
+### New Item
+
+```shell
+
+
+```
