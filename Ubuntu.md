@@ -101,6 +101,12 @@ sudo apt update
 sudo apt install xsane
 ```
 
+### Installing Keepass2
+
+```shell
+sudo add-apt-repository ppa:jtaylor/keepass
+sudo apt update && sudo apt install keepass2
+```
 
 
 ### New Item
