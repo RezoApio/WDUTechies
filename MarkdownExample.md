@@ -30,7 +30,7 @@ export MYVar=toto; #this will export my var
 | ALT+HOME        | Displays the remote computer's Start menu                               |                    |
 
 # Working with PlantUML
-```puml {align="center"}
+```plantuml {align="center"}
 Broker_Bridge<-BROKER_IIB10: channel
 ```
 
