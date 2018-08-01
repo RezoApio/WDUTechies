@@ -108,6 +108,12 @@ sudo add-apt-repository ppa:jtaylor/keepass
 sudo apt update && sudo apt install keepass2
 ```
 
+### Pdf Mix Tool to join pdf
+
+```shell
+sudo snap install pdfmixtool
+#Warning the first run takes quite some time
+```
 
 ### New Item
 
@@ -115,3 +121,6 @@ sudo apt update && sudo apt install keepass2
 
 
 ```
+
+
+
