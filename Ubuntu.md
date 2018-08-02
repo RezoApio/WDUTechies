@@ -64,6 +64,12 @@ hubic synchronize
 
 ```
 
+### Installing DVD burner
+
+```shell
+sudo apt install brasero
+```
+
 ### Installing Visual Studio Code
 
 ```shell
@@ -119,6 +125,27 @@ sudo apt update && sudo apt install keepass2
 ```shell
 sudo snap install pdfmixtool
 #Warning the first run takes quite some time
+```
+
+### Installing a Spigot Minecraft Server
+
+```shell
+sudo apt install git openjdk-8-jre-headless
+mkdir ~/Repositories/Spigot
+cd ~/Repositories/Spigot
+wget -O BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+git config --global --unset core.autocrlf
+java -jar BuildTools.jar
+java -jar BuildTools.jar --rev 1.13
+
+echo "cd ~/Repositories/Spigot" >~/RunMinecreftServer.sh
+echo "java -Xms1G -Xmx1G -XX:+UseConcMarkSweepGC -jar spigot-1.13.jar" >>~/RunMinecreftServer.sh
+chmod a+x ~/RunMinecreftServer.sh
+~/RunMinecreftServer.sh
+#Server will stop as EULA is not accepted
+sed -i '/^eula/s/false/true/' eula.txt
+#Will accept the eula
+~/RunMinecreftServer.sh
 ```
 
 ### New Item
