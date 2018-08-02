@@ -38,6 +38,14 @@ rsync -avhW --no-compress --progress /src/ /dst/
 # --no-compress as there's no lack of bandwidth between local devices
 # --progress so I can see the progress of large files (optional) 
 ```
+
+# Prevent cp to ask for overwrite in script
+
+By default cp is aliased as cp -i and -f is not preventing -i so Jenkins scripts could fail,
+you can force to use the not aliased version by running \cp instead of cp.
+
+```
+
 # New Item
 
 ```bash
