@@ -1,14 +1,16 @@
 
 # Installing Ubuntu Memo
 
-## Installing Old Machines 
+## Installing Old Machines
 
-###Moving from 16.04 LTS to 18.04 LTS
+### Moving from 16.04 LTS to 18.04 LTS
+
 Starts by installing 16.04 LTS 64bits as 18.04 LiveCD stalls
 Then we upgrade distro
+
 ```shell
 #Just make sure we are up-to-date
-sudo apt update 
+sudo apt update
 sudo apt upgrade
 sudo apt dist-upgrade
 sudo apt autoremove
@@ -18,21 +20,23 @@ sudo apt install update-manager-core
 
 #Let's go
 sudo do-release-upgrade -d
-#-d is only needed because moving path will be present after July 2018 
+#-d is only needed because moving path will be present after July 2018
 
 ```
 
 ## Installing Main Laptop
 
-###Creating Directories
+### Creating Directories
+
 ```shell
 mkdir ~/Containers
 mkdir ~/Repositories
 mkdir ~/Downloads/Installer
 mkdir ~/Documents/Hubic
-
 ```
-###Adding git & Techies Repo
+
+### Adding git & Techies Repo
+
 ```shell
 sudo apt install git
 cd ~/Repositories
@@ -40,6 +44,7 @@ git clone https://github.com/RezoApio/WDUTechies.git
 ```
 
 ### Git Password Caching
+
 ```shell
 git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=86400'
@@ -47,7 +52,8 @@ git config --global credential.helper 'cache --timeout=86400'
 
 ```
 
-###Adding Hubic support to synch folders
+### Adding Hubic support to synch folders
+
 ```shell
 sudo apt install gdebi-core # Adding deb package Manager
 cd ~/Downloads/Installer
@@ -77,7 +83,7 @@ sudo update-alternatives --set editor /usr/bin/code
 
 ```
 
-### Installing Pixma MG5650 
+### Installing Pixma MG5650
 
 ```shell
 firefox "https://www.canon-europe.com/support/consumer_products/products/fax__multifunctionals/inkjet/pixma_mg_series/pixma_mg5650.aspx?type=drivers&language=EN&os=Linux%20(64-bit)"
@@ -121,6 +127,3 @@ sudo snap install pdfmixtool
 
 
 ```
-
-
-
