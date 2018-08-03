@@ -200,10 +200,19 @@ where rep.name = 'Siebel Repository'
  and lst_col.field_name = ''
 ```
 
+## Add a user in DBA authentication
+
+```SQL
+create user FP13794 identified by "MySecurePwd";
+grant SSE_ROLE to FP13794;
+alter user FP13794 default tablespace D_CBB01;
+alter user FP13794 temporary tablespace TMP01; 
+
+```
+
 ## New Item
 
 ```SQL
 
 
 ```
-
