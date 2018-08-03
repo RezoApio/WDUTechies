@@ -1,6 +1,7 @@
 # Working with languages
 
 ## Math Notation
+
 ```math
 sin(x)^3/cos(y^3)
 ```
@@ -19,7 +20,8 @@ export MYVar=toto; #this will export my var
 export MYVar=toto; #this will export my var
 ```
 
-# Working with tables
+## Working with tables
+
 `http://www.tablesgenerator.com/markdown_tables`
 
 | Key combination | Function                                                                | Similar local keys |
@@ -29,8 +31,8 @@ export MYVar=toto; #this will export my var
 | ALT+INSERT      | Cycles through running programs on the remote computer                  | ALT+TAB            |
 | ALT+HOME        | Displays the remote computer's Start menu                               |                    |
 
-# Working with PlantUML
+## Working with PlantUML
+
 ```plantuml {align="center"}
 Broker_Bridge<-BROKER_IIB10: channel
 ```
-
