@@ -148,6 +148,15 @@ sed -i '/^eula/s/false/true/' eula.txt
 ~/RunMinecreftServer.sh
 ```
 
+### Nvidia Drivers: the easy way
+
+```shell
+ubuntu-drivers devices
+sudo ubuntu-drivers autoinstall
+
+
+```
+
 ### New Item
 
 ```shell
