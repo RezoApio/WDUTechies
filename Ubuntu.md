@@ -153,6 +153,44 @@ sed -i '/^eula/s/false/true/' eula.txt
 ```shell
 ubuntu-drivers devices
 sudo ubuntu-drivers autoinstall
+```
+
+### Gaming is forever
+
+```shell
+#Steam Package
+sudo dpkg --add-architecture i386
+sudo apt update
+sudo apt install wget gdebi-core libgl1-mesa-dri:i386 libgl1-mesa-glx:i386
+
+cd ~/Downloads/Installer
+wget http://media.steampowered.com/client/installer/steam.deb
+
+sudo gdebi steam.deb
+
+wget https://dl.winehq.org/wine-builds/Release.key
+sudo apt-key add Release.key
+sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/'
+
+sudo apt-get install --install-recommends winehq-stable
+
+WINEPREFIX="/home/william/WineInstall/WOW" winecfg
+
+WINEPREFIX="/home/william/WineInstall/WOW" wine /home/william/Downloads/Installer/WOW-NOSTALGEEK/WoW.exe -opengl
+
+echo '#!/usr/bin/env xdg-open' > ~/Desktop/WoW.desktop
+echo "[Desktop Entry]" >> ~/Desktop/WoW.desktop
+echo "Version=1.0" >> ~/Desktop/WoW.desktop
+echo "Type=Application" >> ~/Desktop/WoW.desktop
+echo "Terminal=false" >> ~/Desktop/WoW.desktop
+echo 'Exec=WINEPREFIX="/home/william/RunWoW.sh' >> ~/Desktop/WoW.desktop
+echo "Name=WoW" >> ~/Desktop/WoW.desktop
+echo "Comment=NostalGeek Vanilla" >> ~/Desktop/WoW.desktop
+echo "Icon=/home/william/Downloads/Installer/WOW-NOSTALGEEK/WoW-icon.png" >> ~/Desktop/WoW.desktop
+
+
+
+
 
 
 ```
