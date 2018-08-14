@@ -1,3 +1,5 @@
+# Taken from mission The Lancers
+
 # Taken from mission The Vampires
 
 # Taken from mission The Defenders
@@ -5,6 +7,8 @@
 # Taken from mission Army Battles
 
 # Adding Splash as the Lancer capacity & Needs to redefine fight between unit
+
+# Adding Healing capacity and Max HP. Modifying vampirism so Heal & Vampire use the restro function.
 
 __DEBUG__ = False
 
@@ -14,55 +18,81 @@ def log(text: str):
 
 class Warrior:
     def __init__(self):
+        self.max_health = 50
         self.health = 50
         self.attack = 5
         self.defense = 0
         self.is_alive = True
         self.vampirism = 0
         self.splash = 0
+        self.healpower = 0
         
     def defend(self, attack):
         if attack > self.defense:
             self.health -= (attack - self.defense)
         if self.health <= 0:
             self.is_alive = False
-        
+
+    def restore(self, life):
+        self.health = min(self.max_health, self.health +life)     
 
 class Knight(Warrior):
     def __init__(self):
+        self.max_health = 50
         self.health = 50
         self.attack = 7
         self.defense = 0
         self.is_alive = True
         self.vampirism = 0
         self.splash = 0
+        self.healpower = 0
         
 class Defender(Warrior):
     def __init__(self):
+        self.max_health = 60
         self.health = 60
         self.attack = 3
         self.defense = 2
         self.is_alive = True
         self.vampirism = 0
         self.splash = 0
+        self.healpower = 0
 
 class Vampire(Warrior):
      def __init__(self):
+        self.max_health = 40
         self.health = 40
         self.attack = 4
         self.defense = 0
         self.is_alive = True
         self.vampirism = 0.5
         self.splash = 0
+        self.healpower = 0
 
 class Lancer(Warrior):
      def __init__(self):
+        self.max_health = 50
         self.health = 50
         self.attack = 6
         self.defense = 0
         self.is_alive = True
         self.vampirism = 0
         self.splash = 0.5
+        self.healpower = 0
+
+class Healer(Warrior):
+    def __init__(self):
+        self.max_health = 60
+        self.health = 60
+        self.attack = 0
+        self.defense = 0
+        self.is_alive = True
+        self.vampirism = 0
+        self.splash = 0
+        self.healpower = 2
+    
+    def heal(self, unit):
+        unit.restore(self.healpower)
 
 class Army:
     
@@ -129,17 +159,21 @@ def battle_fight(unit_1, next_unit_1, unit_2, next_unit_2):
         if turn % 2 == 0:
             unit_1.defend(unit_2.attack)
             if unit_2.vampirism > 0:
-                unit_2.health += (unit_2.attack-unit_1.defense)*unit_2.vampirism
+                unit_2.restore((unit_2.attack-unit_1.defense)*unit_2.vampirism)
             if unit_2.splash > 0:
                 if next_unit_1 :
-                    next_unit_1.health -= (unit_2.attack-unit_1.defense)*unit_2.splash                
+                    next_unit_1.health -= (unit_2.attack-unit_1.defense)*unit_2.splash
+            if next_unit_2 and next_unit_2.healpower >0:
+                next_unit_2.heal(unit_2)                
         else:
             unit_2.defend(unit_1.attack)
             if unit_1.vampirism > 0:
-                unit_1.health += (unit_1.attack-unit_2.defense)*unit_1.vampirism
+                unit_1.restore((unit_1.attack-unit_2.defense)*unit_1.vampirism)
             if unit_1.splash > 0:
                 if next_unit_2:
-                    next_unit_2.health -= (unit_1.attack-unit_2.defense)*unit_1.splash                   
+                    next_unit_2.health -= (unit_1.attack-unit_2.defense)*unit_1.splash
+            if next_unit_1 and next_unit_1.healpower >0:
+                next_unit_1.heal(unit_1)                   
 
         turn += 1
         log("Unit1:="+str(unit_1.health))
@@ -187,6 +221,7 @@ if __name__ == '__main__':
     ogre = Warrior()
     freelancer = Lancer()
     vampire = Vampire()
+    priest = Healer()
 
     assert fight(chuck, bruce) == True
     assert fight(dave, carl) == False
@@ -202,32 +237,41 @@ if __name__ == '__main__':
     assert fight(ogre, adam) == True
     assert fight(freelancer, vampire) == True
     assert freelancer.is_alive == True
+    assert freelancer.health == 14    
+    priest.heal(freelancer)
+    assert freelancer.health == 16
 
     #battle tests
     my_army = Army()
     my_army.add_units(Defender, 2)
+    my_army.add_units(Healer, 1)
     my_army.add_units(Vampire, 2)
-    my_army.add_units(Lancer, 4)
+    my_army.add_units(Lancer, 2)
+    my_army.add_units(Healer, 1)
     my_army.add_units(Warrior, 1)
     
     enemy_army = Army()
     enemy_army.add_units(Warrior, 2)
-    enemy_army.add_units(Lancer, 2)
+    enemy_army.add_units(Lancer, 4)
+    enemy_army.add_units(Healer, 1)
     enemy_army.add_units(Defender, 2)
     enemy_army.add_units(Vampire, 3)
+    enemy_army.add_units(Healer, 1)
 
     army_3 = Army()
     army_3.add_units(Warrior, 1)
     army_3.add_units(Lancer, 1)
+    army_3.add_units(Healer, 1)
     army_3.add_units(Defender, 2)
 
     army_4 = Army()
     army_4.add_units(Vampire, 3)
     army_4.add_units(Warrior, 1)
+    army_4.add_units(Healer, 1)
     army_4.add_units(Lancer, 2)
 
     battle = Battle()
 
-    assert battle.fight(my_army, enemy_army) == True
-    assert battle.fight(army_3, army_4) == False
+    assert battle.fight(my_army, enemy_army) == False
+    assert battle.fight(army_3, army_4) == True
     print("Coding complete? Let's try tests!")
