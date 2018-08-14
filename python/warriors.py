@@ -1,3 +1,5 @@
+# Taken from mission The Defenders
+
 # Taken from mission Army Battles
 
 __DEBUG__ = False
@@ -12,12 +14,14 @@ class Warrior:
         self.attack = 5
         self.defense = 0
         self.is_alive = True
+        self.vampirism = 0
         
     def defend(self, attack):
         if attack > self.defense:
             self.health -= (attack - self.defense)
         if self.health <= 0:
             self.is_alive = False
+        
 
 class Knight(Warrior):
     def __init__(self):
@@ -25,13 +29,24 @@ class Knight(Warrior):
         self.attack = 7
         self.defense = 0
         self.is_alive = True
+        self.vampirism = 0
         
 class Defender(Warrior):
     def __init__(self):
         self.health = 60
         self.attack = 3
         self.defense = 2
-        self.is_alive = True    
+        self.is_alive = True
+        self.vampirism = 0 
+
+class Vampire(Warrior):
+     def __init__(self):
+        self.health = 40
+        self.attack = 4
+        self.defense = 0
+        self.is_alive = True
+        self.vampirism = 0.5
+
 
 class Army:
     
@@ -87,14 +102,17 @@ def fight(unit_1, unit_2):
             return True
         if turn % 2 == 0:
             unit_1.defend(unit_2.attack)
+            if unit_2.vampirism > 0:
+                unit_2.health += (unit_2.attack-unit_1.defense)*unit_2.vampirism
         else:
             unit_2.defend(unit_1.attack)
+            if unit_1.vampirism > 0:
+                unit_1.health += (unit_1.attack-unit_2.defense)*unit_1.vampirism
+
         turn += 1
         log("Unit1:="+str(unit_1.health))
         log("Unit2:="+str(unit_2.health))
     return False
-
-
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
@@ -109,6 +127,10 @@ if __name__ == '__main__':
     mike = Knight()
     rog = Warrior()
     lancelot = Defender()
+    eric = Vampire()
+    adam = Vampire()
+    richard = Defender()
+    ogre = Warrior()
 
     assert fight(chuck, bruce) == True
     assert fight(dave, carl) == False
@@ -120,19 +142,26 @@ if __name__ == '__main__':
     assert carl.is_alive == False
     assert fight(bob, mike) == False
     assert fight(lancelot, rog) == True
+    assert fight(eric, richard) == False
+    assert fight(ogre, adam) == True
 
     #battle tests
     my_army = Army()
-    my_army.add_units(Defender, 1)
+    my_army.add_units(Defender, 2)
+    my_army.add_units(Vampire, 2)
+    my_army.add_units(Warrior, 1)
     
     enemy_army = Army()
     enemy_army.add_units(Warrior, 2)
+    enemy_army.add_units(Defender, 2)
+    enemy_army.add_units(Vampire, 3)
 
     army_3 = Army()
     army_3.add_units(Warrior, 1)
-    army_3.add_units(Defender, 1)
+    army_3.add_units(Defender, 4)
 
     army_4 = Army()
+    army_4.add_units(Vampire, 3)
     army_4.add_units(Warrior, 2)
 
     battle = Battle()
