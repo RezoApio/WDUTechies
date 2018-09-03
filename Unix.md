@@ -50,4 +50,6 @@ you can force to use the not aliased version by running \cp instead of cp.
 ```bash
 passwd <UserName>
 chuser unsuccessful_login_count=0 <UserName>
+chuser account_locked=false <UserName>
+lsuser -a account_locked <UserName>
 ```
