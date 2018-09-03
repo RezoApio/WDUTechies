@@ -44,10 +44,10 @@ rsync -avhW --no-compress --progress /src/ /dst/
 By default cp is aliased as cp -i and -f is not preventing -i so Jenkins scripts could fail,
 you can force to use the not aliased version by running \cp instead of cp.
 
-```
 
-# New Item
+# Reset password AIX
 
 ```bash
-
+passwd <UserName>
+chuser unsuccessful_login_count=0 <UserName>
 ```
