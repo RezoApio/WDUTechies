@@ -61,6 +61,11 @@ wget http://mir7.ovh.net/ovh-applications/hubic/hubiC-Linux/2.1.0/hubiC-Linux-2.
 sudo gdebi hubiC-Linux-2.1.0.53-linux.deb
 hubic login william.dupre@gmail.com /home/william/Documents/Hubic
 hubic synchronize
+# Help link for hubic
+https://doc.ubuntu-fr.org/hubic
+
+#Fix Dbus problem
+export DBUS_SESSION_BUS_ADDRESS=`dbus-daemon --session --fork --print-address`
 
 ```
 
