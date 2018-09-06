@@ -12,9 +12,9 @@ git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080
         change 8080 to the proxy port configured on your proxy server
         this is a change for all the repository
 
-git config http.proxy http://10.225.92.1:80  
+git config --local http.proxy http://10.225.92.1:80
 
-git config --global http.https://github.com http://10.225.92.1:80 
+git config --global http.https://github.com http://10.225.92.1:80
 git config --global http.https://github.com.sslVerify false
 
 ## Checking config
@@ -33,6 +33,7 @@ git config --global --unset http.proxy
 
 ```shell
 git config --global alias.tree "log --graph --decorate --pretty=oneline --abbrev-commit"
+git config --global alias.pom "push origin master"
 git config --global --unset alias.tree
 ```
 
