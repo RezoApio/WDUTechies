@@ -61,11 +61,6 @@ wget http://mir7.ovh.net/ovh-applications/hubic/hubiC-Linux/2.1.0/hubiC-Linux-2.
 sudo gdebi hubiC-Linux-2.1.0.53-linux.deb
 hubic login william.dupre@gmail.com /home/william/Documents/Hubic
 hubic synchronize
-# Help link for hubic
-https://doc.ubuntu-fr.org/hubic
-
-#Fix Dbus problem
-export DBUS_SESSION_BUS_ADDRESS=`dbus-daemon --session --fork --print-address`
 
 ```
 
@@ -182,6 +177,7 @@ sudo apt-get install --install-recommends winehq-stable
 WINEPREFIX="/home/william/WineInstall/WOW" winecfg
 
 WINEPREFIX="/home/william/WineInstall/WOW" wine /home/william/Downloads/Installer/WOW-NOSTALGEEK/WoW.exe -opengl
+WINEPREFIX="/home/william/WineInstall/WOW" wine /home/william/Downloads/Installer/WOW-NOSTALGEEK/world_of_warcraft_wow_cartographe_1_07.exe -opengl
 
 echo '#!/usr/bin/env xdg-open' > ~/Desktop/WoW.desktop
 echo "[Desktop Entry]" >> ~/Desktop/WoW.desktop
@@ -192,17 +188,27 @@ echo 'Exec=WINEPREFIX="/home/william/RunWoW.sh' >> ~/Desktop/WoW.desktop
 echo "Name=WoW" >> ~/Desktop/WoW.desktop
 echo "Comment=NostalGeek Vanilla" >> ~/Desktop/WoW.desktop
 echo "Icon=/home/william/Downloads/Installer/WOW-NOSTALGEEK/WoW-icon.png" >> ~/Desktop/WoW.desktop
-
-
-
-
-
-
 ```
 
-### New Item
+### Installing Docker CE (Community Edition)
 
 ```shell
+#from https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-install-docker-on-ubuntu-18-04-lts-bionic-beaver.html
+sudo apt update
+sudo apt install -y apt-transport-https software-properties-common ca-certificates curl wget
+wget https://download.docker.com/linux/ubuntu/gpg 
+sudo apt-key add gpg
 
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/docker.list
+sudo apt update
 
+sudo apt-cache policy docker-ce #just to check version
+sudo apt install -y docker-ce
+sudo systemctl start docker
+sudo systemctl enable docker
 ```
+
+E: Repository 'https://mega.nz/linux/MEGAsync/xUbuntu_18.04 ./ Release' changed its 'Origin' value from 'manual_build' to 'obs://private/DEB/xUbuntu_18.04'
+E: Repository 'https://mega.nz/linux/MEGAsync/xUbuntu_18.04 ./ Release' changed its 'Codename' value from 'Bionic' to 'xUbuntu_18.04'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+Do you want to accept these changes and continue updating from this repository? [y/N] y
