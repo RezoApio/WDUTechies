@@ -38,54 +38,6 @@ def draw (win, graphList, step, draw=True):
             graphList[9].undraw()
             graphList[10].undraw() 
 
-def pendre(window, step, undraw = False):
-    assert str(step) in ("123456789") , "Step must be in 1..9"
-
-    if step == 1:
-        barre1 = graphics.Line(graphics.Point(550,350), graphics.Point(700,350))
-        barre1.setWidth(5)
-        barre1.draw(window)
-        if undraw:
-            barre1.undraw()
-    elif step == 2:
-        barre2 = graphics.Line(graphics.Point(625,350), graphics.Point(625,100))
-        barre2.setWidth(5)
-        barre2.draw(window)
-    elif step == 3:
-        barre3 = graphics.Line(graphics.Point(625,100), graphics.Point(800,100))
-        barre3.setWidth(5)
-        barre3.draw(window)
-    elif step == 4:
-        barre4 = graphics.Line(graphics.Point(625,200), graphics.Point(700,100))
-        barre4.setWidth(5)
-        barre4.draw(window)
-    elif step == 5:
-        barre5 = graphics.Line(graphics.Point(800,100), graphics.Point(800,150))
-        barre5.setWidth(5)
-        barre5.draw(window)
-    elif step == 6:
-        tete = graphics.Circle(graphics.Point(800,175), 25)
-        tete.setWidth(5)
-        tete.draw(window)
-    elif step == 7:
-        corps = graphics.Line(graphics.Point(800,200), graphics.Point(800,300))
-        corps.setWidth(5)
-        corps.draw(window)
-    elif step == 8:
-        bras1 = graphics.Line(graphics.Point(800,230), graphics.Point(770,250))
-        bras1.setWidth(5)
-        bras1.draw(window)
-        bras2 = graphics.Line(graphics.Point(800,230), graphics.Point(830,250))
-        bras2.setWidth(5)
-        bras2.draw(window)        
-    elif step == 9:
-        jambe1 = graphics.Line(graphics.Point(800,300), graphics.Point(770,320))
-        jambe1.setWidth(5)
-        jambe1.draw(window)
-        jambe2 = graphics.Line(graphics.Point(800,300), graphics.Point(830,320))
-        jambe2.setWidth(5)
-        jambe2.draw(window)
-
 def find_mot() -> str:
     
     url = 'www.palabrasaleatorias.com'
