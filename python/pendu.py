@@ -4,9 +4,11 @@
 
 #import graphics a besoin de tkinter pour python (sudo apt install python3-tk)
 #et pip3 install graphics.py
+#et pip3 install requests
 
 import graphics
-import http.client
+##import http.client
+import requests
 from random import choice
 import time
 import string
@@ -41,27 +43,31 @@ def draw (win, graphList, step, draw=True):
 def find_mot() -> str:
     
     url = 'www.palabrasaleatorias.com'
+    try:
+        connection = http.client.HTTPSConnection('10.225.92.1',80)
+        connection.set_tunnel(url)
+        connection.request("GET", "/mots-aleatoires.php?fs=7&fs2=0&Submit=Nouveau+mot")
+        response = connection.getresponse()
 
-    connection = http.client.HTTPSConnection(url)
-    connection.request("GET", "/mots-aleatoires.php?fs=7&fs2=0&Submit=Nouveau+mot")
-    response = connection.getresponse()
+        if (response.status == 200):
+            data=response.read()
+            u=data.decode('utf8')
+            lines=u.split('\n')
+            liste=[]
 
-    if (response.status == 200):
-        data=response.read()
-        u=data.decode('utf8')
-        lines=u.split('\n')
-        liste=[]
-
-        for i in range(len(lines)):
-            if "color:#6200C5;" in lines[i]:
-                liste.append(lines[i+1].split("<")[0])
-
-    else:    
-        liste=["Abracadabrantesque","Simple","Canard","Croquette","Excellent","Tricheur","Pyhon","Football"]
+            for i in range(len(lines)):
+                if "color:#6200C5;" in lines[i]:
+                    liste.append(lines[i+1].split("<")[0])
         
-    connection.close()
+        connection.close()
+
+    except:
+        liste=[]    
+
+    if liste == []:
+        liste=["Abracadabrantesque","Simple","Canard","Croquette","Excellent","Tricheur","Python","Football"]
+
     return choice(liste)
-    return "toto"
 
 def lettre_in_mot(lettre:str, clair:str, hidden:[]) -> bool:
 
