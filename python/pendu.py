@@ -42,26 +42,41 @@ def draw (win, graphList, step, draw=True):
 
 def find_mot() -> str:
     
-    url = 'www.palabrasaleatorias.com'
+    
     try:
-        connection = http.client.HTTPSConnection('10.225.92.1',80)
-        connection.set_tunnel(url)
-        connection.request("GET", "/mots-aleatoires.php?fs=7&fs2=0&Submit=Nouveau+mot")
-        response = connection.getresponse()
+        url = 'http://www.palabrasaleatorias.com/mots-aleatoires.php'
+        payload= {'fs':'7', 'fs2':'0', 'Submit':"Nouveau+mot"}
+        try:
+            response = requests.get(url, params=payload, timeout=1)
+        except requests.exceptions.Timeout:
+            log('Timeout.. Need to try Proxy')
+        proxy_BIB = {
+            'http': 'http://10.225.92.1:80',
+            'https': 'http://10.225.92.1:80'}
 
-        if (response.status == 200):
-            data=response.read()
-            u=data.decode('utf8')
-            lines=u.split('\n')
+        try:
+            response = requests.get(url, proxies=proxy_BIB, params=payload, timeout=1)
+        except requests.exceptions.RequestException:
+            log('Internet problem')
+            raise
+        
+        log(response.url)
+        log(response.encoding)
+        #connection.set_tunnel(url)
+        #connection.request("GET", "/mots-aleatoires.php?fs=7&fs2=0&Submit=Nouveau+mot")
+        #response = connection.getresponse()
+        response.encoding='utf-8'
+        if (response.status_code == requests.codes.ok):
+            lines=response.text.split('\n')
             liste=[]
 
             for i in range(len(lines)):
                 if "color:#6200C5;" in lines[i]:
                     liste.append(lines[i+1].split("<")[0])
-        
-        connection.close()
 
     except:
+        log(response.url)
+        log(response.encoding)
         liste=[]    
 
     if liste == []:
