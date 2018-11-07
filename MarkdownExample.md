@@ -5,10 +5,18 @@
 ```math
 sin(x)^3/cos(y^3)
 ```
+$$
+sin(x)^3/cos(y^3)
+$$
+
+$$
+f(x)= \int_{-\infty}^\infty\hat f(\xi)e^{2 \pi i \xi x}\,d\xi
+$$
+
 
 ## Code Inline
 
-`ls - ltr | grep "BIBEye" | awk '{print $9}`
+`ls - ltr | grep "BIBEye" | awk '{print $9}'`
 
 ## Using language syntaxing
 
@@ -36,3 +44,8 @@ export MYVar=toto; #this will export my var
 ```plantuml {align="center"}
 Broker_Bridge<-BROKER_IIB10: channel
 ```
+
+## Embedded images
+
+![Archimate Framework](../../Work/EA/ArchiMateFramework.PNG)
+
