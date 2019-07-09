@@ -39,7 +39,7 @@ git config --global alias.pol "pull origin master"
 git config --global --unset alias.tree
 ```
 
-# Another Wonderful commandgit tag
+## Creating tags
 ```shell
 git tag -a v1.4 -m "my version 1.4"
 git push origin v1.4 
@@ -47,3 +47,12 @@ git push origin v1.4
 git pol --tags
 ```
 
+## Keeping change in a local config file after pushing its template
+```shell
+git update-index --assume-unchanged js/properties.js 
+```
+
+## Getting a remote repository as a zip file with no .git info
+```shell
+git archive --format=zip -o toto.zip  --remote=git@github.com:RezoApio/WDUTechies.git master
+```

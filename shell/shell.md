@@ -33,3 +33,6 @@ do
     head -$max $file | tail -$size >> $name${i}.csv
 done
 ```
+
+## Mount samba share 
+mount -vvv -t cifs -o username=wdupre,rw  '//almerys.local/fichiers/Support-AE/54-Couche_Infra/WorkInfra' /mnt/b
