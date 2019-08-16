@@ -10,4 +10,5 @@ ALT+DELETE | Displays the remote window's Control menu | ALT+SPACE BAR |
 CTRL+ALT+NUMBER PAD MINUS | Places an image of active window onto the TS clipboard |ALT+PRINT SCREEN |
 CTRL+ALT+NUMBER PAD PLUS | Places an image of the entire Terminal Services client on the Terminal Services clipboard |PRINT SCREEN |
 
-# New Item
+# Récupérer un site web en local
+wget -r -linf -k -p -E http://www.site.org/
