@@ -56,3 +56,10 @@ git update-index --assume-unchanged js/properties.js
 ```shell
 git archive --format=zip -o toto.zip  --remote=git@github.com:RezoApio/WDUTechies.git master
 ```
+
+## Changing remote origin to ssh intead of https
+```shell
+#thanks to https://pandammonium.org/how-to-change-a-git-repository-from-https-to-ssh/
+git remote -v
+git remote set-url origin git@github.com:RezoApio/WDUTechies.git
+```

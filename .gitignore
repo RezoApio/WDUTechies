@@ -7,3 +7,6 @@
 
 ### Vi tmp swap files ###
 .*.swp
+
+### allow some local writing
+Untraced.txt
