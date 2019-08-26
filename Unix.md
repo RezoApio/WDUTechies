@@ -13,6 +13,17 @@ ps -ef|grep 1675400
 
 ```
 
+
+# TCP Port with ubuntu
+```shell
+netstat -pano
+tcp        0      0 127.0.0.1:6342          0.0.0.0:*               LISTEN      6351/megasync        off (0.00/0/0)
+tcp        0      0 0.0.0.0:8084            0.0.0.0:*               LISTEN      1323/mono            off (0.00/0/0)
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      787/systemd-resolve  off (0.00/0/0)
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1501/sshd            off (0.00/0/0)
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      5258/cupsd           off (0.00/0/0)
+
+```
 # Allow greater size for vi file under AIX
 
 ```shell
