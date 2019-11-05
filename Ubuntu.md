@@ -148,6 +148,14 @@ sed -i '/^eula/s/false/true/' eula.txt
 ~/RunMinecreftServer.sh
 ```
 
+### Removing a user from Ubuntu Gnome Login Menu
+
+```shell
+cd /var/lib/AccountsService/users
+#edit file for user and set SystemAccount=true
+```
+
+
 ### Nvidia Drivers: the easy way
 
 ```shell
@@ -168,11 +176,11 @@ wget http://media.steampowered.com/client/installer/steam.deb
 
 sudo gdebi steam.deb
 
-wget https://dl.winehq.org/wine-builds/Release.key
-sudo apt-key add Release.key
-sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/'
 
+wget -qO- https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+sudo apt-add-repository 'deb http://dl.winehq.org/wine-builds/ubuntu/ bionic main'
 sudo apt-get install --install-recommends winehq-stable
+
 
 WINEPREFIX="/home/william/WineInstall/WOW" winecfg
 
@@ -223,7 +231,11 @@ sudo apt-get install crawl
 sudo apt-get install crawl-tiles
 ```
 
-E: Repository 'https://mega.nz/linux/MEGAsync/xUbuntu_18.04 ./ Release' changed its 'Origin' value from 'manual_build' to 'obs://private/DEB/xUbuntu_18.04'
-E: Repository 'https://mega.nz/linux/MEGAsync/xUbuntu_18.04 ./ Release' changed its 'Codename' value from 'Bionic' to 'xUbuntu_18.04'
-N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
-Do you want to accept these changes and continue updating from this repository? [y/N] y
+### install ssh daemon
+```shell
+sudo apt update
+sudo apt install openssh-server
+sudo systemctl status ssh
+```
+
+### systemd start service
