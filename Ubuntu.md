@@ -1,29 +1,6 @@
 
 # Installing Ubuntu Memo
 
-## Installing Old Machines
-
-### Moving from 16.04 LTS to 18.04 LTS
-
-Starts by installing 16.04 LTS 64bits as 18.04 LiveCD stalls
-Then we upgrade distro
-
-```shell
-#Just make sure we are up-to-date
-sudo apt update
-sudo apt upgrade
-sudo apt dist-upgrade
-sudo apt autoremove
-
-#Install Updater the Ubuntu Way
-sudo apt install update-manager-core
-
-#Let's go
-sudo do-release-upgrade -d
-#-d is only needed because moving path will be present after July 2018
-
-```
-
 ## Installing Main Laptop
 
 ### Creating Directories
@@ -32,15 +9,26 @@ sudo do-release-upgrade -d
 mkdir ~/Containers
 mkdir ~/Repositories
 mkdir ~/Downloads/Installer
-mkdir ~/Documents/Hubic
+mkdir ~/Documents/Mega
+mkdir ~/WineInstall
 ```
 
+### Creating a new ssh key-pair
+
+```shell
+ssh-keygen -t rsa -b 4096 -C "william.dupre@gmail.com"
+```
+
+
+
 ### Adding git & Techies Repo
+
+Add the new ssh key to git account
 
 ```shell
 sudo apt install git
 cd ~/Repositories
-git clone https://github.com/RezoApio/WDUTechies.git
+git clone git@github.com:RezoApio/WDUTechies.git
 ```
 
 ### Git Password Caching
@@ -52,17 +40,16 @@ git config --global credential.helper 'cache --timeout=86400'
 
 ```
 
-### Adding Hubic support to synch folders
+### Adding Mega to get sync
 
 ```shell
 sudo apt install gdebi-core # Adding deb package Manager
 cd ~/Downloads/Installer
-wget http://mir7.ovh.net/ovh-applications/hubic/hubiC-Linux/2.1.0/hubiC-Linux-2.1.0.53-linux.deb
-sudo gdebi hubiC-Linux-2.1.0.53-linux.deb
-hubic login william.dupre@gmail.com /home/william/Documents/Hubic
-hubic synchronize
-
+#get megasync-xUbuntu_19.10_amd64.deb from mega.nz website
+sudo gdebi megasync-xUbuntu_19.10_amd64.deb
 ```
+
+Then run Mega from gnome and enjoy synch
 
 ### Installing DVD burner
 
@@ -107,11 +94,13 @@ tar -xvf scangearmp2-3.00-1-deb.tar.gz
 cd scangearmp2-3.00-1-deb/
 sudo ./install.sh
 
-##Adding Rolf Bensch PPA for xsane
+```
+
+### Adding Rolf Bensch PPA for xsane
 sudo add-apt-repository ppa:rolfbensch/sane-git
 sudo apt update
 sudo apt install xsane
-```
+
 
 ### Installing Keepass2
 
@@ -164,6 +153,22 @@ sudo ubuntu-drivers autoinstall
 ```
 
 ### Gaming is forever
+
+https://wiki.winehq.org/Ubuntu
+
+sudo dpkg --add-architecture i386
+cd ~/Downloads
+wget -nc https://dl.winehq.org/wine-builds/winehq.key
+sudo apt-key add winehq.key
+sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ eoan main'
+
+sudo apt update
+sudo apt install --install-recommends winehq-staging winbind winetricks
+
+
+WINEPREFIX="/home/william/WineInstall/BNet" winetricks
+
+WINEPREFIX="/home/william/WineInstall/BNet" wine64 ~/Downloads/Installer/Diablo/Battle.net-Setup.exe
 
 ```shell
 #Steam Package
@@ -239,3 +244,21 @@ sudo systemctl status ssh
 ```
 
 ### systemd start service
+
+
+
+sudo vi /etc/java-8-openjdk/accessibility.properties
+#need to comment the assistive technology module there
+java -jar squirrel-sql-4.0.0-standard.jar
+
+
+
+sudo apt install openjdk-8-jre
+
+
+
+
+
+sed -n '/^-- Current Database: `auth`/,/^-- Current Database: `/p' /media/william/Transport/Trinity/TCdump.sql > authdump.sql
+
+sed -n '/^-- Current Database: `characters`/,/^-- Current Database: `/p' /media/william/Transport/Trinity/TCdump.sql > chardump.sql
